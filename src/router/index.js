@@ -7,7 +7,11 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        pageTitle: "Ferretería Ferremás",
+        pageSubtitle: "Herramientas"
+      }
     },
     {
       path: '/about',
@@ -15,9 +19,16 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/AboutView.vue'),
+      meta: {
+        pageTitle: "Sobre Nosotros"
+      }
     }
   ]
 })
+
+router.beforeEach((to) => {
+  document.title = to.meta.pageTitle || 'Ferremás'
+});
 
 export default router
