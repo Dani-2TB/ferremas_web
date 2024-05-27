@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-body sticky-top shadow-sm" data-bs-theme = 'dark'>
     <div class="container"> 
-      <a href="/" class="navbar-brand">
+      <RouterLink to="/" class="navbar-brand">
         <img src="../assets/images/logo.png" alt="logo" class="nav-logo">
         Ferremás
-      </a>
+      </RouterLink>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir Navegación">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -14,10 +14,10 @@
             <RouterLink class="nav-link" to="/">Inicio</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="about">Nosotros</RouterLink>
+            <RouterLink class="nav-link" to="nosotros">Nosotros</RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Contacto</a>
+            <RouterLink class="nav-link" to="contacto">Contacto</RouterLink>
           </li>
         </ul>
       </div>
