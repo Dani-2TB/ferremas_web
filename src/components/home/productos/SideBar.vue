@@ -27,8 +27,8 @@ onMounted(() => {
   fetchCategorías();
 })
 
-function selectCategoria(id) {
-  categoriaSelect.value = id;
+function selectCategoria(id, nombre) {
+  categoriaSelect.value = {id: id, nombre: nombre};
   console.log(categoriaSelect.value)
 }
 
@@ -54,13 +54,13 @@ function selectCategoria(id) {
       <div v-if="categoria.sub_categorias">
 
         <div v-for="subcat1 in categoria.sub_categorias" :key="subcat1.id">
-          <div class="nav-item" @click="subcat1.sub_categorias.length === 0 ? selectCategoria(subcat1.id) : undefined">
+          <div class="nav-item" @click="subcat1.sub_categorias.length === 0 ? selectCategoria(subcat1.id, subcat1.nombre) : undefined">
             <div class="categoria flex-grow ps-4" :class="[ subcat1.sub_categorias.length > 0 ? 'fw-bold' : 'nav-link']">{{ subcat1.nombre }}</div>
           </div>
           <div v-if="subcat1.sub_categorias">
 
             <div v-for="subcat2 in subcat1.sub_categorias" :key="subcat2.id">
-              <div class="nav-item" @click="selectCategoria(subcat2.id)">
+              <div class="nav-item" @click="selectCategoria(subcat2.id, subcat2.nombre)">
                 <div class="categoria nav-link flex-grow ps-5">{{subcat2.nombre}}</div>
               </div>
             </div>

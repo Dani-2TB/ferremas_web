@@ -13,7 +13,7 @@
       <SideBar v-model="categoriaSelect" />
     </div>
     <div class="col-12 col-md-9">
-      <h2>{{ categoriaSelect }}</h2>
+      <h2>{{ categoriaSelect === 0 ? 'Seleccione una categoría' : categoriaSelect.nombre }}</h2>
     </div>
   </div>
 </template>
