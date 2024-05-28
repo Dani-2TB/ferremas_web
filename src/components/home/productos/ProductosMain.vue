@@ -16,7 +16,7 @@
     fetchOk.value = false;
     
     let id_categoria = categoriaSelect.value.id;
-    let url = `http://192.168.100.99:8000/api/productos/productoCategoriaList/${id_categoria}`;
+    let url = `http://192.168.221.22:8000/api/productos/productoCategoriaList/${id_categoria}`;
 
     try {
       const response = await fetch(url, {method: "GET", headers: {"Content-Type": "application/json"}});

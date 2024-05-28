@@ -9,7 +9,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <RouterLink class="nav-link" to="/">Inicio</RouterLink>
           </li>
@@ -18,6 +18,9 @@
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link" to="contacto">Contacto</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="login">Login</RouterLink>
           </li>
         </ul>
       </div>

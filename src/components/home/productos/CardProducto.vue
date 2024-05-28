@@ -16,12 +16,12 @@
 </template>
 
 <script setup>
-  import { defineProps } from 'vue';
-  defineProps({
-    nombre: String,
-    precio: Number,
-    cantidad: Number
-  })
+
+defineProps({
+  nombre: String,
+  precio: Number,
+  cantidad: Number
+})
 
 </script>
 

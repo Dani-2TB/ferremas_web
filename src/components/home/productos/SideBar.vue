@@ -6,7 +6,7 @@ const fetching = ref(true);
 const categoriaSelect = defineModel();
 
 async function fetchCategorías() {
-  const url = 'http://192.168.100.99:8000/api/productos/categoriaList';
+  const url = 'http://192.168.221.22:8000/api/productos/categoriaList';
   await fetch(url,{
     method: "GET",
     headers: {

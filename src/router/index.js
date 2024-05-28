@@ -10,7 +10,7 @@ const router = createRouter({
       component: HomeView,
       meta: {
         pageTitle: "Ferretería Ferremás",
-        pageSubtitle: "Herramientas"
+        pageSubtitle: "Arreglarlo nunca fue tan fácil"
       }
     },
     {
@@ -30,6 +30,14 @@ const router = createRouter({
       component: () => import('../views/ContactView.vue'),
       meta: {
         pageTitle: 'Contáctanos'
+      }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/auth/LoginView.vue'),
+      meta: {
+        pageTitle: 'Ferremás Usuarios'
       }
     }
   ]
