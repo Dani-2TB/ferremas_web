@@ -39,6 +39,14 @@ const router = createRouter({
       meta: {
         pageTitle: 'Ferremás Usuarios'
       }
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: () => import('../views/auth/LogoutView.vue'),
+      meta: {
+        pageTitle: "Ferremás Usuarios"
+      }
     }
   ]
 })

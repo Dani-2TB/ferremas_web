@@ -1,3 +1,30 @@
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { sessionStore } from '@/stores/sessionStore'
+
+const router = useRouter();
+const session = sessionStore();
+
+const input = ref(
+  {
+    username: "",
+    password: ""
+  }
+)
+
+const logginIn = ref(false);
+
+async function onSubmit(username, password) {
+  logginIn.value = true;
+  await session.login(username, password);
+  logginIn.value = false;
+  if (session.isLoggedIn) {
+      router.push('/')
+    }
+  }
+</script>
+
 <template>
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
@@ -18,24 +45,7 @@
       <p>¿No tienes una cuenta? <RouterLink to="/">Registrate</RouterLink></p>
     </div>
   </div>
-  </template>
-
-<script setup>
-import { ref } from 'vue';
-import { sessionStore } from '@/stores/sessionStore'
-const session = sessionStore();
-
-const input = ref(
-  {
-    username: "",
-    password: ""
-  }
-)
-
-async function onSubmit(username, password) {
-  await session.login(username, password);
-}
-</script>
+</template>
 
 <style scoped>
 .form {

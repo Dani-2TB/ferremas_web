@@ -13,7 +13,15 @@ const session = sessionStore();
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir Navegación">
         <span class="navbar-toggler-icon"></span>
       </button>
+        
       <div class="collapse navbar-collapse" id="navbarNav">
+        <ul v-if="session.isLoggedIn" class="navbar-nav ms-3">
+          <li class="nav-item">
+            <span class="user-greeting">
+              Hola {{ session.username }}!
+            </span>
+          </li>
+        </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <RouterLink class="nav-link" to="/">Inicio</RouterLink>
@@ -27,6 +35,9 @@ const session = sessionStore();
           <li v-if="!session.isLoggedIn" class="nav-item">
             <RouterLink class="nav-link" to="login">Login</RouterLink>
           </li>
+          <li v-else class="nav-item">
+            <RouterLink class="nav-link" to="logout">Logout</RouterLink>
+          </li>
         </ul>
       </div>
     </div>
@@ -36,5 +47,11 @@ const session = sessionStore();
 <style>
 .bg-ferremas {
   background-color: #FFA000;
+}
+
+.user-greeting {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 </style>

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-const apiUrl = `http://localhost:8000/api/auth/`;
+const apiUrl = `${import.meta.env.VITE_API_URL}/auth/`;
 
 export const sessionStore = defineStore('session', () => {
     const username = ref('Anonymous');
@@ -19,11 +19,25 @@ export const sessionStore = defineStore('session', () => {
         })
 
         if (response.ok) {
-            console.log("logged in")
+            this.isLoggedIn = true;
         } else {
-            console.log("not")
+            return
         }
+
+        let data = await response.json()
+
+        this.username = data.user;
+        this.token = data.token;
+
+        console.log(this.username)
+        console.log(this.token)
     }
 
-    return { username, token, isLoggedIn, login}
+    function logout() {
+        this.username = "Anonymous"
+        this.token = "Anonymous"
+        this.isLoggedIn = false;
+    }
+
+    return { username, token, isLoggedIn, login, logout}
 });
