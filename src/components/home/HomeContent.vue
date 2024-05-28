@@ -5,6 +5,7 @@
 
 <template>
   <MainCarousel />
+  <hr class="mt-5 mb-4">
   <ProductosMain />
 </template>
 

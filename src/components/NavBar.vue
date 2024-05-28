@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body sticky-top shadow-sm" data-bs-theme = 'dark'>
+  <nav class="navbar navbar-expand-lg bg-ferremas sticky-top shadow-sm">
     <div class="container"> 
       <RouterLink to="/" class="navbar-brand">
         <img src="../assets/images/logo.png" alt="logo" class="nav-logo">
@@ -25,5 +25,8 @@
   </nav>
 </template>
 
-<script setup>
-</script>
+<style>
+.bg-ferremas {
+  background-color: #FFA000;
+}
+</style>

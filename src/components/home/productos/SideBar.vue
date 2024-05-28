@@ -6,7 +6,7 @@ const fetching = ref(true);
 const categoriaSelect = defineModel();
 
 async function fetchCategorías() {
-  const url = 'http://localhost:8000/api/productos/categoriaList';
+  const url = 'http://192.168.100.99:8000/api/productos/categoriaList';
   await fetch(url,{
     method: "GET",
     headers: {
@@ -17,7 +17,6 @@ async function fetchCategorías() {
     response.json()
     .then((data) => {
       categorias.value = data;
-      console.log(categorias.value)
       fetching.value = false;
     });
   });
@@ -29,14 +28,13 @@ onMounted(() => {
 
 function selectCategoria(id, nombre) {
   categoriaSelect.value = {id: id, nombre: nombre};
-  console.log(categoriaSelect.value)
 }
 
 </script>
 
 <template>
 
-<h4>Categorías</h4>
+<h4 class="h4">Categorías</h4>
 
 <div id="sidebar" class="rounded px-1 py-4">
 
@@ -47,21 +45,21 @@ function selectCategoria(id, nombre) {
     </div>
   </div>
 
-  <nav v-else class="nav nav-pills d-flex flex-column px-2">
+  <nav v-else class="menu nav nav-pills px-2">
 
-    <div v-for="categoria in categorias" :key="categoria.id">
-      <div class="categoria fw-bold fs-5 flex-grow">{{ categoria.nombre }}</div>
+    <div v-for="categoria in categorias" :key="categoria.id" class="w-100">
+      <div class="categoria fw-bold fs-5 mb-2">{{ categoria.nombre }}</div>
       <div v-if="categoria.sub_categorias">
 
         <div v-for="subcat1 in categoria.sub_categorias" :key="subcat1.id">
           <div class="nav-item" @click="subcat1.sub_categorias.length === 0 ? selectCategoria(subcat1.id, subcat1.nombre) : undefined">
-            <div class="categoria flex-grow ps-4" :class="[ subcat1.sub_categorias.length > 0 ? 'fw-bold' : 'nav-link']">{{ subcat1.nombre }}</div>
+            <div class="categoria ps-4" :class="[ subcat1.sub_categorias.length > 0 ? 'fw-bold' : 'nav-link']">{{ subcat1.nombre }}</div>
           </div>
           <div v-if="subcat1.sub_categorias">
 
             <div v-for="subcat2 in subcat1.sub_categorias" :key="subcat2.id">
               <div class="nav-item" @click="selectCategoria(subcat2.id, subcat2.nombre)">
-                <div class="categoria nav-link flex-grow ps-5">{{subcat2.nombre}}</div>
+                <div class="categoria nav-link ps-5">{{subcat2.nombre}}</div>
               </div>
             </div>
 
@@ -79,7 +77,6 @@ function selectCategoria(id, nombre) {
 <style scoped>
 
 #sidebar {
-  min-height: 300px;
   width: 100%;
   background-color: #ffffff;
 }
@@ -94,6 +91,14 @@ function selectCategoria(id, nombre) {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+
+@media screen and (max-width: 1199px) {
+  .menu {
+    width: 100%;
+    max-height: 10rem;
+    overflow-y: scroll;
+  }
 }
 
 </style>
