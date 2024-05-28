@@ -1,3 +1,8 @@
+<script setup>
+import { sessionStore } from '@/stores/sessionStore'
+const session = sessionStore();
+</script>
+
 <template>
   <nav class="navbar navbar-expand-lg bg-ferremas sticky-top shadow-sm">
     <div class="container"> 
@@ -19,7 +24,7 @@
           <li class="nav-item">
             <RouterLink class="nav-link" to="contacto">Contacto</RouterLink>
           </li>
-          <li class="nav-item">
+          <li v-if="!session.isLoggedIn" class="nav-item">
             <RouterLink class="nav-link" to="login">Login</RouterLink>
           </li>
         </ul>

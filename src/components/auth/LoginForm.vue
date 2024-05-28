@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
       <h3>Iniciar Sesión</h3>
-      <form action="submit" class="form mb-2">
+      <form @submit.prevent="onSubmit(input.username, input.password)" class="form mb-2">
         <div class="form-field">
           <div class="mb-3">
             <label for="username" class="form-label">Nombre de usuario</label>
@@ -22,6 +22,8 @@
 
 <script setup>
 import { ref } from 'vue';
+import { sessionStore } from '@/stores/sessionStore'
+const session = sessionStore();
 
 const input = ref(
   {
@@ -29,6 +31,10 @@ const input = ref(
     password: ""
   }
 )
+
+async function onSubmit(username, password) {
+  await session.login(username, password);
+}
 </script>
 
 <style scoped>
