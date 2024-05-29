@@ -47,6 +47,15 @@ const router = createRouter({
       meta: {
         pageTitle: "Ferremás Usuarios"
       }
+    },
+    {
+      path: '/carrito',
+      name: 'carrito',
+      component: () => import('../views/CarritoView.vue'),
+      meta: {
+        pageTitle: "Carrito de compras",
+        pageSubtitle: "¡Gracias por preferirnos!"
+      }
     }
   ]
 })

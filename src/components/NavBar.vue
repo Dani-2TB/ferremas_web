@@ -24,14 +24,16 @@ const session = sessionStore();
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/">Inicio</RouterLink>
+            <RouterLink class="nav-link" to="/carrito">
+              <img class="carrito-img" src="../assets/images/cart.svg">
+            </RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link" to="nosotros">Nosotros</RouterLink>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <RouterLink class="nav-link" to="contacto">Contacto</RouterLink>
-          </li>
+          </li> -->
           <li v-if="!session.isLoggedIn" class="nav-item">
             <RouterLink class="nav-link" to="login">Login</RouterLink>
           </li>
@@ -46,12 +48,23 @@ const session = sessionStore();
 
 <style>
 .bg-ferremas {
-  background-color: #FFA000;
+  background-color: #ff8e5a;
 }
 
 .user-greeting {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+
+.carrito-img {
+  padding: 3px;
+  width: 2rem;
+  border-radius: 3px;
+  transition: background-color, 0.3s;
+}
+
+.carrito-img:hover {
+  background-color: #ff9f72;
 }
 </style>

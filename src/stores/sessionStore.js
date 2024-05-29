@@ -8,35 +8,35 @@ export const sessionStore = defineStore('session', () => {
     const token = ref('Anonymous');
     const isLoggedIn = ref(false);
 
-    async function login(username, password) {
+    async function login(user, password) {
         let url = apiUrl + 'login';
         let response = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({username: username, password: password})
+            body: JSON.stringify({username: user, password: password})
         })
 
         if (response.ok) {
-            this.isLoggedIn = true;
+            isLoggedIn.value = true;
         } else {
             return
         }
 
         let data = await response.json()
 
-        this.username = data.user;
-        this.token = data.token;
+        username.value = data.user;
+        token.value = data.token;
 
         console.log(this.username)
         console.log(this.token)
     }
 
     function logout() {
-        this.username = "Anonymous"
-        this.token = "Anonymous"
-        this.isLoggedIn = false;
+        username.value = "Anonymous"
+        token.value = "Anonymous"
+        isLoggedIn.value = false;
     }
 
     return { username, token, isLoggedIn, login, logout}

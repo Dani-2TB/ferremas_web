@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { sessionStore } from '@/stores/sessionStore'
+import { sessionStore } from '@/stores/sessionStore';
 
 const router = useRouter();
 const session = sessionStore();
@@ -11,7 +11,7 @@ const input = ref(
     username: "",
     password: ""
   }
-)
+);
 
 const logginIn = ref(false);
 
@@ -20,7 +20,7 @@ async function onSubmit(username, password) {
   await session.login(username, password);
   logginIn.value = false;
   if (session.isLoggedIn) {
-      router.push('/')
+      router.push('/');
     }
   }
 </script>
@@ -50,7 +50,7 @@ async function onSubmit(username, password) {
 <style scoped>
 .form {
   padding: 2rem 1.5rem;
-  background-color: rgb(236, 236, 233);
+  background-color: #f3f3ed;
   border-radius: 0.4rem;
 }
 </style>

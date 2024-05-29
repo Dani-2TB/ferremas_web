@@ -1,6 +1,6 @@
 <template>
 <footer>
-  <div class="bg-secondary-subtle footer-img shadow-sm">
+  <div class="footer-img shadow-sm">
     <div class="container-fluid footer-mask py-5">
       <div class="container py-5">
         <div class="row py-5">
@@ -11,12 +11,12 @@
             </div>
           </div>
           <div class="col-lg-4 col-md-6 py-3 d-flex flex-column justify-content-center">
-            <h3 class="fs-2 fw-bold d-block text-uppercase text-center">Ferretería Ferremás</h3>
+            <h3 class="footer-h fs-2 fw-bold d-block text-uppercase text-center">Ferretería Ferremás</h3>
             <a href="" class="footer-link d-block text-center">Sobre Nosotros</a>
             <a href="" class="footer-link d-block text-center">Contacto</a>
           </div>
           <div class="col-lg-4 col-md-6 py-3 d-flex flex-column justify-content-center">
-            <h3 class="fs-2 fw-bold d-block text-uppercase text-center">Productos y Servicios</h3>
+            <h3 class="footer-h fs-2 fw-bold d-block text-uppercase text-center">Productos y Servicios</h3>
             <a href="" class="footer-link d-block text-center">Ventas</a>
             <a href="" class="footer-link d-block text-center">Asesoramiento</a>
           </div>
@@ -29,6 +29,11 @@
 
 
 <style>
+
+.footer-h {
+  color: rgb(0, 32, 177);
+}
+
 .footer-link {
   text-decoration: none;
   font-size: 18pt;

@@ -11,7 +11,6 @@
   watch(categoriaSelect, fetchProductos)
 
   async function fetchProductos() {
-    console.log("Cargando Productos")
     cargandoProductos.value = true;
     fetchOk.value = false;
     
@@ -22,9 +21,9 @@
       const response = await fetch(url, {method: "GET", headers: {"Content-Type": "application/json"}});
       if (response.ok) {
         fetchOk.value = true;
-        response.json().then((data) => {
+        response.json()
+        .then((data) => {
           productosArray.value = data;
-          console.log(productosArray.value)
         });
       }
     } catch(err) {
@@ -48,7 +47,7 @@
       </div>
       <div v-if="fetchOk" class="row g-3">
           <div v-for="producto in productosArray" :key="producto.id" class="col-12 col-sm-6 col-xl-4">
-            <CardProducto :nombre="producto.nombre" :precio="producto.precio" :cantidad="producto.cantidad" />
+            <CardProducto :id="producto.id" :nombre="producto.nombre" :precio="producto.precio" :cantidad="producto.cantidad" />
           </div>
       </div>
       <div v-else class="h-100 d-flex justify-content-center mt-5">
