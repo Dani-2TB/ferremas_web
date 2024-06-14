@@ -1,8 +1,3 @@
-<script setup>
-import { sessionStore } from '@/stores/sessionStore'
-const session = sessionStore();
-</script>
-
 <template>
   <nav class="navbar navbar-expand-lg bg-ferremas sticky-top shadow-sm">
     <div class="container"> 
@@ -46,9 +41,14 @@ const session = sessionStore();
   </nav>
 </template>
 
-<style>
+<script setup>
+import { sessionStore } from '@/stores/sessionStore'
+const session = sessionStore();
+</script>
+
+<style lang="css">
 .bg-ferremas {
-  background-color: #ff8e5a;
+  background-color: #FFCB2E;
 }
 
 .user-greeting {
