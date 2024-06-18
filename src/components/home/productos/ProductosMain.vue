@@ -46,7 +46,7 @@
         <p class="fl-3">Cargando Productos...</p>
       </div>
       <div v-if="fetchOk" class="row g-3">
-          <div v-for="producto in productosArray" :key="producto.id" class="col-12 col-sm-6 col-xl-4">
+          <div v-for="producto in productosArray.results" :key="producto.id" class="col-12 col-sm-6 col-xl-4">
             <CardProducto :id="producto.id" :nombre="producto.nombre" :precio="producto.precio" :cantidad="producto.cantidad" />
           </div>
       </div>

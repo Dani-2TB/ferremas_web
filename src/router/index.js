@@ -56,6 +56,11 @@ const router = createRouter({
         pageTitle: "Carrito de compras",
         pageSubtitle: "¡Gracias por preferirnos!"
       }
+    },
+    {
+      path: '/dev',
+      name: 'development',
+      component: () => import('../views/DevView.vue')
     }
   ]
 })
