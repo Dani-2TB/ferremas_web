@@ -1,9 +1,9 @@
 <template>
   <h3 class="h1 mb-4"> Nuestros Productos </h3>
   <div id="productos" class="row px-1 py-3 rounded">
-    <div class="col-12 controls pb-2">
-      <button class="btn btn-primary">Anterior</button>
-      <button class="btn btn-primary">Siguiente</button>
+    <div class="col-12 controls pb-2 d-flex flex-row">
+      <button v-if="productosArray.previous" @click="fetchProductos(productosArray.previous)" class="btn btn-primary d-block ms-auto me-2">Anterior</button>
+      <button v-if="productosArray.next" @click="fetchProductos(productosArray.next)" class="btn btn-primary d-block ms-auto">Siguiente</button>
     </div>
 
     <div class="col-12 col-xl-3 sidebar">
@@ -48,35 +48,38 @@
   const cargandoProductos = ref(false);
   const fetchOk = ref(true);
 
-  watch(categoriaSelect, fetchProductos)
+  watch(categoriaSelect, () => {
+    fetchProductos();
+  })
 
-  async function fetchProductos() {
+  async function fetchProductos(url = "") {
+    productosArray.value = []
     cargandoProductos.value = true;
-    fetchOk.value = false;
-    
+    fetchOk.value = true;
     let id_categoria = categoriaSelect.value.id;
-    let url = `${import.meta.env.VITE_API_URL}/productos/productoCategoriaList/${id_categoria}`;
 
-    try {
-      const response = await fetch(url, {method: "GET", headers: {"Content-Type": "application/json"}});
-      if (response.ok) {
-        fetchOk.value = true;
-        response.json()
-        .then((data) => {
-          productosArray.value = data;
-        });
-      }
-    } catch(err) {
-      fetchOk.value = false;
-    } finally {
-      cargandoProductos.value = false;
+    if (url === "") {
+      url = `${import.meta.env.VITE_API_URL}/productos/productoCategoriaList/${id_categoria}`;
     }
+
+    const response = await fetch(url, {method: "GET", headers: {"Content-Type": "application/json"}});
+    if (response.ok) {
+      fetchOk.value = true;
+      response.json()
+      .then((data) => {
+        productosArray.value = data;
+      });
+    } else { 
+      fetchOk.value = false;
+    }
+    
+    cargandoProductos.value = false;
   }
 </script>
 
 <style scoped>
   #productos {
-    height: 50rem;
+    height: 58rem;
     overflow-y: hidden;
     background-color: #EEEEEE;
   }
