@@ -4,7 +4,7 @@
 
 <script setup>
 
-import SideBar from "../components/home/productos/SideBar.vue"
+import SideBar from '@/components/home/productos/SideBar.vue';
 
 </script>
 

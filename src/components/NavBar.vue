@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { sessionStore } from '@/stores/sessionStore'
+import { sessionStore } from '@/stores/sessionStore';
 const session = sessionStore();
 </script>
 
