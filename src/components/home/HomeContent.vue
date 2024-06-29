@@ -1,6 +1,6 @@
 <script setup>
   import MainCarousel from './MainCarousel.vue';
-  import ProductosMain from './productos/ProductosMain.vue'
+  import ProductosMain from '../productos/ProductosMain.vue'
 </script>
 
 <template>

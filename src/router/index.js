@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ProductoAdmin from '../views/admin/ProductoAdmin.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,7 +12,14 @@ const router = createRouter({
       meta: {
         pageTitle: "Ferretería Ferremás",
         pageSubtitle: "Arreglarlo nunca fue tan fácil"
-      }
+      },
+    },
+    {
+      path: '/productos',
+      children: [
+        { path: 'add', component: ProductoAdmin},
+        { path: 'update/:id', component: ProductoAdmin}
+      ]
     },
     {
       path: '/nosotros',

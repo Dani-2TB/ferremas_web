@@ -7,7 +7,8 @@ const props = defineProps({
   id: Number,
   nombre: String,
   precio: String,
-  cantidad: Number
+  cantidad: Number,
+  marca: String,
 });
 
 async function carritoAdd() {
@@ -35,13 +36,16 @@ async function fetchProducto(id) {
   <img src="/src/assets/images/template.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{ $props.nombre }}</h5>
-    <p class="card-subtitle text-body-secondary hidden">Stock: {{ $props.cantidad || 'Agotado' }}</p>
-    <p class="card-text">Precio: ${{ $props.precio || 0 }}</p>
+    <p class="card-subtitle text-body-secondary">Stock: {{ $props.cantidad || 'Agotado' }}</p>
+    <p class="card-text">
+      Marca: {{ $props.marca ? $props.marca : 'Sin Marca' }} <br>
+      Precio: ${{ $props.precio || 0 }}
+    </p>
     <div class="d-flex flex-row flex-wrap gap-2">
       <a @click="carritoAdd" class="btn btn-primary flex-grow-0">Agregar al carrito</a>
     </div>
   </div>
-</div><div class=""></div>
+</div>
 
 </template>
 

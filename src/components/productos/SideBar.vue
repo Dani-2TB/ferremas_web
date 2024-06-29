@@ -1,41 +1,4 @@
-<script setup>
-import { ref, onMounted, defineModel } from 'vue';
-
-const categorias = ref();
-const fetching = ref(true);
-const categoriaSelect = defineModel();
-
-async function fetchCategorías() {
-  const url = `${import.meta.env.VITE_API_URL}/productos/categoriaList`;
-  await fetch(url,{
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-  .then((response) => {
-    response.json()
-    .then((data) => {
-      categorias.value = data;
-      fetching.value = false;
-    });
-  });
-}
-
-onMounted(() => {
-  fetchCategorías();
-})
-
-function selectCategoria(id, nombre) {
-  categoriaSelect.value = {id: id, nombre: nombre};
-}
-
-</script>
-
 <template>
-
-<h4 class="h4">Categorías</h4>
-
 <div id="sidebar" class="rounded px-1 py-4">
 
   <div v-if="fetching" class="w-100 h-100 d-flex flex-column align-items-center justify-content-center">
@@ -73,6 +36,40 @@ function selectCategoria(id, nombre) {
 </div>
 
 </template>
+
+<script setup>
+import { ref, onMounted, defineModel } from 'vue';
+
+const categorias = ref();
+const fetching = ref(true);
+const categoriaSelect = defineModel();
+
+async function fetchCategorías() {
+  const url = `${import.meta.env.VITE_API_URL}/productos/categoriaList`;
+  await fetch(url,{
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then((response) => {
+    response.json()
+    .then((data) => {
+      categorias.value = data;
+      fetching.value = false;
+    });
+  });
+}
+
+onMounted(() => {
+  fetchCategorías();
+})
+
+function selectCategoria(id, nombre) {
+  categoriaSelect.value = {id: id, nombre: nombre};
+}
+
+</script>
 
 <style scoped>
 
