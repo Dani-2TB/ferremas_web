@@ -1,11 +1,9 @@
 <template>
-<SideBar/>
+  <CreateProducto></CreateProducto>
 </template>
 
 <script setup>
-
-import SideBar from '@/components/home/productos/SideBar.vue';
-
+import CreateProducto from "../components/home/productos/admin/ProductoForm.vue"
 </script>
 
 <style>

@@ -24,16 +24,16 @@
             </RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="nosotros">Nosotros</RouterLink>
+            <RouterLink class="nav-link" to="/nosotros">Nosotros</RouterLink>
           </li>
           <!-- <li class="nav-item">
             <RouterLink class="nav-link" to="contacto">Contacto</RouterLink>
           </li> -->
           <li v-if="!session.isLoggedIn" class="nav-item">
-            <RouterLink class="nav-link" to="login">Login</RouterLink>
+            <RouterLink class="nav-link" to="/login">Login</RouterLink>
           </li>
           <li v-else class="nav-item">
-            <RouterLink class="nav-link" to="logout">Logout</RouterLink>
+            <RouterLink class="nav-link" to="/logout">Logout</RouterLink>
           </li>
         </ul>
       </div>

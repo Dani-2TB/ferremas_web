@@ -1,16 +1,12 @@
 <template>
   <h3 class="h1 mb-4"> Nuestros Productos </h3>
   <div id="productos" class="row px-1 py-3 rounded">
-    <div class="col-12 controls pb-2 d-flex flex-row">
-      <button v-if="productosArray.previous" @click="fetchProductos(productosArray.previous)" class="btn btn-primary d-block ms-auto me-2">Anterior</button>
-      <button v-if="productosArray.next" @click="fetchProductos(productosArray.next)" class="btn btn-primary d-block ms-auto">Siguiente</button>
-    </div>
-
+    
     <div class="col-12 col-xl-3 sidebar">
       <SideBar v-model="categoriaSelect" />
     </div>
 
-    <div class="col-12 col-xl-9 d-flex flex-column">
+    <div class="col-12 col-xl-9 d-flex flex-column productos">
       <h4 class="h4 mt-3 mt-xl-0">{{ categoriaSelect === 0 ? 'Seleccione una categoría' : categoriaSelect.nombre }}</h4>
 
       <div v-if="cargandoProductos" class="h-25 d-flex align-items-center justify-content-center">
@@ -32,7 +28,11 @@
       <div v-else class="h-100 d-flex justify-content-center mt-5">
         <p class="fs-3">Lo sentimos, no hay productos en esta categoría 😔</p>
       </div>
-
+      
+    </div>
+    <div class="col-12 controls d-flex flex-row">
+      <button v-if="productosArray.previous" @click="fetchProductos(productosArray.previous)" class="btn btn-primary d-block ms-auto">Anterior</button>
+      <button v-if="productosArray.next" @click="fetchProductos(productosArray.next)" class="btn btn-primary d-block ms-auto">Siguiente</button>
     </div>
 
   </div>
@@ -79,7 +79,7 @@
 
 <style scoped>
   #productos {
-    height: 58rem;
+    height: 60rem;
     overflow-y: hidden;
     background-color: #EEEEEE;
   }
@@ -90,10 +90,18 @@
   }
 
   .productos {
-    max-height: 100%;
+    max-height: 90%;
+    overflow-y:auto;
   }
 
   .controls {
     height: 3rem;
   }
+
+  @media screen and (max-width: 1199px){
+    .productos {
+      height: 68%;
+    }
+  }
+
 </style>
