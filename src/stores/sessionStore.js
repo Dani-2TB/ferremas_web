@@ -7,6 +7,7 @@ export const sessionStore = defineStore('session', () => {
     const username = ref('Anonymous');
     const token = ref('Anonymous');
     const isLoggedIn = ref(false);
+    const rol = ref("Guest")
 
     async function login(user, password) {
         let url = apiUrl + 'login';
@@ -28,16 +29,42 @@ export const sessionStore = defineStore('session', () => {
 
         username.value = data.user;
         token.value = data.token;
-
-        console.log(this.username)
-        console.log(this.token)
+        rol.value = data.rol;
+        
+        localStorage.setItem("ferremas-username", username.value)
+        localStorage.setItem("ferremas-token", token.value)
+        localStorage.setItem("ferremas-rol", rol.value)
     }
 
     function logout() {
         username.value = "Anonymous"
         token.value = "Anonymous"
         isLoggedIn.value = false;
+        localStorage.clear();
     }
 
-    return { username, token, isLoggedIn, login, logout}
+    async function checkCredentials() {
+        const storedToken = localStorage.getItem("ferremas-token");
+        if (storedToken !== null) {
+            const url = apiUrl + 'testToken';
+            let response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": 'Token ' + storedToken
+                }
+            });
+
+            if (response.ok) {
+                username.value = localStorage.getItem("ferremas-username").valueOf();
+                token.value = storedToken;
+                rol.value = localStorage.getItem("ferremas-rol").valueOf();
+                isLoggedIn.value = true;
+            }
+        } else {
+            return;
+        }
+    }
+
+    return { username, token, isLoggedIn, rol, login, logout, checkCredentials}
 });

@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { sessionStore } from '@/stores/sessionStore';
+
 import HomeView from '../views/HomeView.vue'
-import ProductoAdmin from '../views/admin/ProductoAdmin.vue';
+import ProductoEdit from '../views/admin/ProductoEdit.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,8 +19,13 @@ const router = createRouter({
     {
       path: '/productos',
       children: [
-        { path: 'add', component: ProductoAdmin},
-        { path: 'update/:id', component: ProductoAdmin}
+        { 
+          path: 'add',
+          component: ProductoEdit,
+          meta: {type:"add"},
+          beforeEnter: [requireLogin, isAdmin]
+        },
+        { path: 'update/:id', component: ProductoEdit, meta: {type: "update"}}
       ]
     },
     {
@@ -69,12 +76,41 @@ const router = createRouter({
       path: '/dev',
       name: 'development',
       component: () => import('../views/DevView.vue')
+    },
+    {
+      path: '/forbidden',
+      name: 'forbidden',
+      component: () => import('../views/ForbiddenView.vue')
     }
   ]
 })
 
-router.beforeEach((to) => {
-  document.title = to.meta.pageTitle || 'Ferremás'
+router.beforeEach(async (to) => {
+  document.title = to.meta.pageTitle || 'Ferremás';
+  const session = sessionStore();
+  await session.checkCredentials();
+  if (to.name === 'login' && session.isLoggedIn) {
+    return { name: 'home'}
+  }
 });
+
+
+async function requireLogin() {
+  const session = sessionStore();
+  if (!session.isLoggedIn) {
+    return {
+      name: 'login',
+    }
+  }
+}
+
+async function isAdmin() {
+  const session = sessionStore();
+  if (session.rol !== "admin") {
+    return {
+      name: 'forbidden',
+    }
+  }
+}
 
 export default router
