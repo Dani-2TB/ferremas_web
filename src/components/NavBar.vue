@@ -13,7 +13,7 @@
         <ul v-if="session.isLoggedIn" class="navbar-nav ms-3">
           <li class="nav-item">
             <span class="user-greeting">
-              Hola {{ session.username }}!
+              Hola {{ session.username }}! eres {{ session.rol }}
             </span>
           </li>
         </ul>

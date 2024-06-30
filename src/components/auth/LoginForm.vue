@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter} from 'vue-router';
 import { sessionStore } from '@/stores/sessionStore';
 
 const router = useRouter();
@@ -26,6 +26,9 @@ async function onSubmit(username, password) {
 </script>
 
 <template>
+  <h2>
+    {{ $route.meta.error }}
+  </h2>
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
       <h3>Iniciar Sesión</h3>
