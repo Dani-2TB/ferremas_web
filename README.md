@@ -1,35 +1,21 @@
-# ferremas_web
+# Web Ferremás - Integración de plataformas DuocUC
 
-This template should help get you started developing with Vue 3 in Vite.
+Front end de aplicación para integración de plataformas
 
-## Recommended IDE Setup
+## ¿Qué es esto?
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Esta repo contiene el código correpondiente al front end escrito en Vue.js, se ha
+optado a eliminar TypeScript de las dependencias, además de usar pinia y vue router
+para otorgar características de SPA al producto.
 
-## Customize configuration
+Se trata de un e-commerce para una ferretería, el cual necesita integración con 
+servicios web, como WebPay y la API del banco central para cambio de divisas.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Backend
 
-## Project Setup
+El backend está en el siguiente repositorio: 
 
-```sh
-npm install
-```
+https://github.com/Dani-2TB/ferremas_api
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Este backend está escrito con python, utilizando django + django rest framework
+para operar como una API REST.
