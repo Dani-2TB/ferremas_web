@@ -13,7 +13,7 @@
         <ul v-if="session.isLoggedIn" class="navbar-nav ms-3">
           <li class="nav-item">
             <span class="user-greeting">
-              Hola {{ session.username }}! eres {{ session.rol }}
+              Hola {{ session.username }}! 
             </span>
           </li>
         </ul>
@@ -22,6 +22,12 @@
             <RouterLink class="nav-link" to="/carrito">
               <img class="carrito-img" src="../assets/images/cart.svg">
             </RouterLink>
+          </li>
+          <li 
+            v-if="session.isLoggedIn && session.rol === 'admin'" 
+            class="nav-item"
+          >
+            <RouterLink class="nav-link" to="#">Administrar</RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link" to="/nosotros">Nosotros</RouterLink>
@@ -43,6 +49,7 @@
 
 <script setup>
 import { sessionStore } from '@/stores/sessionStore';
+import { RouterLink } from 'vue-router';
 const session = sessionStore();
 </script>
 
