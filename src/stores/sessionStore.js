@@ -52,9 +52,10 @@ export const sessionStore = defineStore('session', () => {
     }
 
     function logout() {
-        username.value = "Anonymous"
-        token.value = "Anonymous"
+        username.value = "guest"
+        token.value = "guest"
         isLoggedIn.value = false;
+        rol.value = "guest";
         localStorage.clear();
     }
 

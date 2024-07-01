@@ -21,11 +21,20 @@ const router = createRouter({
       children: [
         { 
           path: 'add',
-          component: ProductoEdit,
+          component: () => import('../views/admin/ProductoEdit.vue'),
           meta: {type:"add"},
           beforeEnter: [requireLogin, isAdmin]
         },
-        { path: 'update/:id', component: ProductoEdit, meta: {type: "update"}}
+        { path: 'update/:id', 
+          component: () => import('../views/admin/ProductoEdit.vue'),
+          meta: {type: "update"},
+          beforeEnter: [requireLogin, isAdmin]
+        },
+        {
+          path: 'delete/:id',
+          component: () => import('../views/admin/ProductoDelete.vue'),
+          beforeEnter: [requireLogin, isAdmin]
+        }
       ]
     },
     {
@@ -78,9 +87,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/dev',
-      name: 'development',
-      component: () => import('../views/DevView.vue')
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/admin/AdminView.vue')
     },
     {
       path: '/forbidden',

@@ -1,6 +1,10 @@
 <script setup>
 import { carritoStore } from '@/stores/carritoStore';
+import { sessionStore } from '@/stores/sessionStore';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+const session = sessionStore();
 const carrito = carritoStore();
 
 const props = defineProps({
@@ -28,6 +32,14 @@ async function fetchProducto(id) {
   }
 }
 
+function productoDelete(id) {
+  router.push(`/productos/delete/${id}`);
+}
+
+function productoEdit(id) {
+  router.push(`/productos/update/${id}`)
+}
+
 </script>
 
 <template>
@@ -43,8 +55,9 @@ async function fetchProducto(id) {
     </p>
   </div>
   <div class="d-flex flex-row flex-wrap gap-2 ms-3 mb-3">
-    <a @click="carritoAdd" class="btn btn-primary flex-grow-0">Agregar</a>
-    <a @click="carritoAdd" class="btn btn-secondary flex-grow-0">Ver Más</a>
+    <a @click="carritoAdd" class="btn btn-primary flex-grow-0">Agregar al carro</a>
+    <a @click="productoEdit(props.id)" class="btn btn-warning" v-if="session.rol === 'admin'">Editar</a>
+    <a @click="productoDelete(props.id)" class="btn btn-danger" v-if="session.rol === 'admin'">Eliminar</a>
   </div>
 </div>
 

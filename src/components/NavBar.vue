@@ -27,7 +27,7 @@
             v-if="session.isLoggedIn && session.rol === 'admin'" 
             class="nav-item"
           >
-            <RouterLink class="nav-link" to="#">Administrar</RouterLink>
+            <RouterLink class="nav-link" to="/admin">Administrar</RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link" to="/nosotros">Nosotros</RouterLink>

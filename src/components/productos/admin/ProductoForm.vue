@@ -1,5 +1,13 @@
 <template>
-<form @submit.prevent>
+<div v-if="messages.length > 0" v-for="message in messages">
+  <div class="alert display-flex alert-dismissible fade show" :class="message.class"
+  >
+    <i class="bi bi-check-circle me-3"></i><span>{{ message.text }}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+  </div>
+</div>
+<form @submit.prevent class="py-3 px-4 mt-3 rounded">
   <div class="mb-3">
     <label for="nombre" class="form-label">Nombre <span class="required">*</span></label>
     <input type="text" name="nombre" class="form-control"
@@ -65,8 +73,9 @@
   const marcaList = ref(Array(0));
   const categoriaList = ref(Array(0));
   const fetchOk = ref();
-  const form = ref(new Form());
+  const form = ref(new ProductoForm());
   const route = useRoute();
+  const messages = ref([{class: {'alert-success': true}, text: 'test'}])
   
   fetchOk.value = true;
 
@@ -132,7 +141,7 @@
     this.nombre = nombre
   }
 
-  function Form() {
+  function ProductoForm() {
     this.id = new Number();
     this.nombre = new String();
     this.descripcion = new String();
@@ -143,6 +152,7 @@
   }
 
   async function updateProducto(update = true) {
+    messages.value = new Array(0);
     const endpoint = update ? `productoDetalle/${form.value.id}` : 'productoList/'
     const url = `${import.meta.env.VITE_API_URL}/productos/${endpoint}`;
     const respone = await fetch(
@@ -155,7 +165,10 @@
     )
 
     if (respone.ok) {
-      update ? console.log("Updateado") : console.log("Agregado")
+      if (!update) {
+        form.value = new ProductoForm();
+        messages.value.push({class:{'alert-success': true}, text: 'Producto agregado con éxito'})
+      }
     }
   }
 </script>
@@ -163,5 +176,9 @@
 <style>
 .required {
   color: rgb(211, 12, 39);
+}
+
+form {
+  background-color: rgb(240, 239, 237);
 }
 </style>
