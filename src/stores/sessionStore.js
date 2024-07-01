@@ -21,19 +21,34 @@ export const sessionStore = defineStore('session', () => {
 
         if (response.ok) {
             isLoggedIn.value = true;
+            let data = await response.json();
+            username.value = data.user;
+            token.value = data.token;
+            rol.value = data.rol;
+            
+            localStorage.setItem("ferremas-username", username.value)
+            localStorage.setItem("ferremas-token", token.value)
+            localStorage.setItem("ferremas-rol", rol.value)
+            return {sucess: true}
         } else {
-            return
+            return await response.json();
         }
+    }
 
-        let data = await response.json()
-
-        username.value = data.user;
-        token.value = data.token;
-        rol.value = data.rol;
-        
-        localStorage.setItem("ferremas-username", username.value)
-        localStorage.setItem("ferremas-token", token.value)
-        localStorage.setItem("ferremas-rol", rol.value)
+    async function register(user, password, email) {
+        let url = apiUrl + 'register';
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({username: user, password: password, email: email})
+        });
+        if (response.ok) {
+            return 'sucess';
+        } else {
+            return await response.json();
+        }
     }
 
     function logout() {
@@ -66,5 +81,5 @@ export const sessionStore = defineStore('session', () => {
         }
     }
 
-    return { username, token, isLoggedIn, rol, login, logout, checkCredentials}
+    return { username, token, isLoggedIn, rol, login, register, logout, checkCredentials}
 });

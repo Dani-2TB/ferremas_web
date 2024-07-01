@@ -41,9 +41,10 @@ async function fetchProducto(id) {
       Marca: {{ $props.marca ? $props.marca : 'Sin Marca' }} <br>
       Precio: ${{ $props.precio || 0 }}
     </p>
-    <div class="d-flex flex-row flex-wrap gap-2">
-      <a @click="carritoAdd" class="btn btn-primary flex-grow-0">Agregar al carrito</a>
-    </div>
+  </div>
+  <div class="d-flex flex-row flex-wrap gap-2 ms-3 mb-3">
+    <a @click="carritoAdd" class="btn btn-primary flex-grow-0">Agregar</a>
+    <a @click="carritoAdd" class="btn btn-secondary flex-grow-0">Ver Más</a>
   </div>
 </div>
 
@@ -56,5 +57,8 @@ async function fetchProducto(id) {
 }
 .hidden {
   display: none;
+}
+.card {
+  min-height: 25rem;
 }
 </style>
