@@ -1,5 +1,5 @@
 <template>
-<div id="sidebar" class="rounded px-1 py-4">
+<div id="sidebar" class="py-3 px-2">
 
   <div v-if="fetching" class="w-100 h-100 d-flex flex-column align-items-center justify-content-center">
     <h3 class="text-center">Cargando Categorías</h3>

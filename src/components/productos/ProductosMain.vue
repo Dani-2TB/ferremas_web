@@ -1,12 +1,11 @@
 <template>
-  <h3 class="h1 mb-4"> Nuestros Productos </h3>
-  <div id="productos" class="row px-1 py-3 rounded">
+  <div id="productos" class="row px-1 py-3 rounded justify-content-center">
     
     <div class="col-12 col-xl-3 sidebar">
       <SideBar v-model="categoriaSelect" />
     </div>
 
-    <div class="col-12 col-xl-9 d-flex flex-column productos">
+    <div class="col-11 col-xl-9 d-flex flex-column productos">
       <h4 class="h4 mt-3 mt-xl-0">{{ categoriaSelect === 0 ? 'Seleccione una categoría' : categoriaSelect.nombre }}</h4>
 
       <div v-if="cargandoProductos" class="h-25 d-flex align-items-center justify-content-center">
@@ -30,7 +29,7 @@
       </div>
       
     </div>
-    <div class="col-12 controls d-flex flex-row">
+    <div v-if="productosArray" class="col-12 controls d-flex flex-row">
       <button v-if="productosArray.previous" @click="fetchProductos(productosArray.previous)" class="btn btn-primary d-block ms-auto">Anterior</button>
       <button v-if="productosArray.next" @click="fetchProductos(productosArray.next)" class="btn btn-primary d-block ms-auto">Siguiente</button>
     </div>
@@ -79,7 +78,7 @@
 
 <style scoped>
   #productos {
-    height: 60rem;
+    height: 62rem;
     overflow-y: hidden;
     background-color: #EEEEEE;
   }
