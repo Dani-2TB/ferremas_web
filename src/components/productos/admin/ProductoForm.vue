@@ -1,13 +1,14 @@
 <template>
-<div v-if="messages.length > 0" v-for="message in messages">
-  <div class="alert display-flex alert-dismissible fade show" :class="message.class"
-  >
-    <i class="bi bi-check-circle me-3"></i><span>{{ message.text }}</span>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
+<div v-if="messages.length > 0">
+  <div v-for="message in messages" :key="message.text">
+    <div class="alert display-flex alert-dismissible fade show" :class="message.class"
+    >
+      <i class="bi bi-check-circle me-3"></i><span>{{ message.text }}</span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   </div>
 </div>
-<form @submit.prevent class="py-3 px-4 mt-3 rounded">
+<form @submit.prevent class="py-3 px-4 rounded">
   <div class="mb-3">
     <label for="nombre" class="form-label">Nombre <span class="required">*</span></label>
     <input type="text" name="nombre" class="form-control"
@@ -75,7 +76,7 @@
   const fetchOk = ref();
   const form = ref(new ProductoForm());
   const route = useRoute();
-  const messages = ref([{class: {'alert-success': true}, text: 'test'}])
+  const messages = ref(new Array(0));
   
   fetchOk.value = true;
 
@@ -153,6 +154,7 @@
 
   async function updateProducto(update = true) {
     messages.value = new Array(0);
+
     const endpoint = update ? `productoDetalle/${form.value.id}` : 'productoList/'
     const url = `${import.meta.env.VITE_API_URL}/productos/${endpoint}`;
     const respone = await fetch(
@@ -168,6 +170,8 @@
       if (!update) {
         form.value = new ProductoForm();
         messages.value.push({class:{'alert-success': true}, text: 'Producto agregado con éxito'})
+      } else {
+        messages.value.push({class: {'alert-success': true}, text: 'Producto actualizado con éxito'})
       }
     }
   }
