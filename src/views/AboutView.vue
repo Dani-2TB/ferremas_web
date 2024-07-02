@@ -1,5 +1,6 @@
 <template>
-<div class="row pt-5 px-2 my-3 mx-auto">
+<h1 class="display-3">{{ $route.meta.pageTitle }}</h1>
+<div class="row px-2 my-3 mx-auto">
   <div class="col-lg-4">
     <img class="img-fluid rounded align-middle" src="../assets/images/template.jpg" alt="Bike gears in a shop.">
   </div>
