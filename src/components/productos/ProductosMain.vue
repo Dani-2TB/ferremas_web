@@ -1,4 +1,11 @@
 <template>
+  <div v-for="message in messages" :key="message.text">
+    <div class="alert display-flex alert-dismissible fade show" :class="message.class"
+    >
+      <i class="bi bi-check-circle me-3"></i><span>{{ message.text }}</span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
   <div id="productos" class="row px-1 py-3 rounded justify-content-center">
     
     <div class="col-12 col-xl-3 sidebar">
@@ -41,15 +48,24 @@
   import SideBar from './SideBar.vue';
   import CardProducto from './CardProducto.vue'
   import { ref, watch } from 'vue';
+  import { carritoStore } from '@/stores/carritoStore';
+
+  const carrito = carritoStore();
+  const items = carrito.items;
 
   const categoriaSelect = ref(0);
   const productosArray = ref(Array(0));
   const cargandoProductos = ref(false);
   const fetchOk = ref(true);
+  const messages = ref(new Array(0));
 
   watch(categoriaSelect, () => {
     fetchProductos();
   })
+
+  watch(items, () => {
+    messages.value.push({class: {'alert-success':true}, text: 'Producto agregado con éxito.'})
+  });
 
   async function fetchProductos(url = "") {
     productosArray.value = []

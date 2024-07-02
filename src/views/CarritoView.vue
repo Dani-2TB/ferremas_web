@@ -12,11 +12,11 @@ function pagar() {
   <h2>Tu carrito:</h2>
   <div class="row justify-content-center">
     <div class="carrito col-12 col-md-6 align-items-center rounded p-2">
-      <div v-if="storeCarrito.carrito.length === 0" class="text-center">
+      <div v-if="storeCarrito.items.length === 0" class="text-center">
         <h2>No hay items en tu carrito 🥺</h2>
       </div>
       <div v-else>
-        <div v-for="item in storeCarrito.carrito" :key="item.producto.id">
+        <div v-for="item in storeCarrito.items" :key="item.producto.id">
           <hr>
           {{ item.producto.nombre }} x {{ item.cantidad }} Subtotal: ${{ item.producto.precio * item.cantidad }}
         </div>

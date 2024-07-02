@@ -19,8 +19,11 @@
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/carrito">
+            <RouterLink class="nav-link position-relative" to="/carrito">
               <img class="carrito-img" src="../assets/images/cart.svg">
+              <span class="position-absolute top-20 start-80 translate-middle badge bg-dark rounded-circle text-white" v-if="cantidadItems > 0">
+                {{ cantidadItems }}
+              </span>
             </RouterLink>
           </li>
           <li 
@@ -50,7 +53,22 @@
 <script setup>
 import { sessionStore } from '@/stores/sessionStore';
 import { RouterLink } from 'vue-router';
+import { carritoStore } from '@/stores/carritoStore';
+import { onMounted, ref, watch } from 'vue';
+
 const session = sessionStore();
+const carrito = carritoStore();
+const items = carrito.items;
+const cantidadItems = ref(0);
+
+onMounted(() => {
+  cantidadItems.value = items.length;
+});
+
+watch (items, () =>{
+  cantidadItems.value = items.length;
+});
+
 </script>
 
 <style lang="css">
@@ -66,12 +84,21 @@ const session = sessionStore();
 
 .carrito-img {
   padding: 3px;
-  width: 2rem;
+  width: 2.5rem;
+  height: 2rem;
   border-radius: 3px;
   transition: background-color, 0.3s;
 }
 
 .carrito-img:hover {
-  background-color: #ff9f72;
+  background-color: #f0ac54;
+}
+
+.notif {
+  text-align: center;
+  width: 1.8rem;
+  font-size: 8pt;
+  font-weight: bold;
+  color: white;
 }
 </style>
