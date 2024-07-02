@@ -1,7 +1,7 @@
 <template>
-<h1 v-if="$route.meta.type === 'add'">Agregar Producto</h1>
-<h1 v-if="$route.meta.type === 'update'">Actualizar Producto</h1>
-<ProductoForm class="producto-form"></ProductoForm>
+<h1 v-if="$route.meta.type === 'add'" class="mb-3">Agregar Producto</h1>
+<h1 v-if="$route.meta.type === 'update'" class="mb-3">Actualizar Producto</h1>
+<ProductoForm/>
 </template>
 
 <script setup>
