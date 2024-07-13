@@ -47,7 +47,7 @@
 <script setup>
   import SideBar from './SideBar.vue';
   import CardProducto from './CardProducto.vue'
-  import { ref, watch } from 'vue';
+  import { onMounted, ref, watch } from 'vue';
   import { carritoStore } from '@/stores/carritoStore';
 
   const carrito = carritoStore();
@@ -67,6 +67,9 @@
     messages.value.push({class: {'alert-success':true}, text: 'Producto agregado con éxito.'})
   });
 
+  onMounted(() => {
+    fetchProductos(`${import.meta.env.VITE_API_URL}/productos/productosList`);
+  });
   async function fetchProductos(url = "") {
     productosArray.value = []
     cargandoProductos.value = true;
