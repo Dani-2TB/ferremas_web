@@ -47,8 +47,12 @@ export const carritoStore = defineStore('items', () => {
             if (response.ok) {
                 const data = await response.json();
                 items.value[i].producto = data;
+                if (data.cantidad < items.value[i].cantidad) {
+                    items.value[i].cantidad = data.cantidad
+                }
             }
         }
     }
+
     return {items, total, carritoAdd, carritoRemove, carritoDelete, updateCarrito, updateTotal}
 })
