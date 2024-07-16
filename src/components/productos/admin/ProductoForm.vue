@@ -51,7 +51,10 @@
       <option v-for="marca in marcaList" :key="marca.id" :value="marca.id">{{ marca.nombre }}</option>
     </select>
   </div>
-
+  <div class="mb-3">
+    <input class="form-check-input me-3" name="destacado" type="checkbox" v-model="form.destacado">
+    <label class="form-check-label" for="destacado">Destacado</label>
+  </div>
   <button 
     v-if="$route.meta.type === 'add'" class="btn btn-success me-2" 
     type="submit" @click="updateProducto(false)">
@@ -114,6 +117,7 @@
     form.value.cantidad = data.cantidad;
     form.value.categoria = data.categoria;
     form.value.marca = data.marca;
+    form.value.destacado = data.destacado
   }
   
   function updateCategorias(data) {
@@ -150,6 +154,7 @@
     this.cantidad = new Number();
     this.categoria = new Number();
     this.marca = new Number();
+    this.destacado = false;
   }
 
   async function updateProducto(update = true) {

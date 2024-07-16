@@ -1,24 +1,33 @@
 <template>
-<h2 class="display-5">Productos Destacados</h2>
-<div id="mainCarousel" class="carousel slide">
-  <div class="carousel-inner rounded">
-    <div class="carousel-item active">
-      <img src="../../assets/images/carousel/slide1.jpg" class="d-block w-100 carousel-img" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="../../assets/images/carousel/slide2.jpg" class="d-block w-100 carousel-img" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="../../assets/images/carousel/slide3.jpg" class="d-block w-100 carousel-img" alt="...">
-    </div>
+<h2 class="display-5 mb-3">Productos Destacados</h2>
+<div class="row">
+  <div v-for="producto in destacados" :key="producto.id" class="col-12 col-md-6 col-lg-4 mb-3">
+      <CardProducto 
+        :id="producto.id" 
+        :nombre="producto.nombre" 
+        :precio="producto.precio"
+        :cantidad="producto.cantidad"
+        :marca="producto.nombre_marca"
+      />
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
 </template>
+
+<script setup>
+
+import { onMounted, ref } from 'vue';
+
+import CardProducto from '../productos/CardProducto.vue';
+
+const destacados = ref(Array(0))
+
+onMounted(async () => {
+  let url = `${import.meta.env.VITE_API_URL}/productos/destacadosList`;
+  const response = await fetch(url);
+  if (response.ok) {
+    const data = await response.json();
+    destacados.value = data;
+  }
+})
+
+</script>
