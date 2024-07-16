@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { sessionStore } from '@/stores/sessionStore';
+import { carritoStore } from '@/stores/carritoStore';
 
 import HomeView from '../views/HomeView.vue'
-import ProductoEdit from '../views/admin/ProductoEdit.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -84,7 +84,8 @@ const router = createRouter({
       meta: {
         pageTitle: "Carrito de compras",
         pageSubtitle: "¡Gracias por preferirnos!"
-      }
+      },
+      beforeEnter: [updateCarrito]
     },
     {
       path: '/admin',
@@ -125,6 +126,11 @@ async function isAdmin() {
       name: 'forbidden',
     }
   }
+}
+
+async function updateCarrito() {
+  const carrito = carritoStore();
+  carrito.updateCarrito();
 }
 
 export default router

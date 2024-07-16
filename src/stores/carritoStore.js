@@ -8,14 +8,29 @@ export const carritoStore = defineStore('items', () => {
     function carritoAdd(data){
         for (let i = 0; i < items.value.length; i++) {
             if (items.value[i].producto.id === data.producto.id) {
-                console.log("item was in list")
                 items.value[i].cantidad += data.cantidad;
                 return;
             }
         }
-
-        console.log("pushed new item")
         items.value.push(data);
+    }
+    
+    function carritoRemove(data) {
+        for (let i = 0; i < items.value.length; i++) {
+            if (items.value[i].producto.id == data.producto.id) {
+                items.value[i].cantidad -= 1;
+                return;
+            }
+        }
+    }
+
+    function carritoDelete(id) {
+        for (let i = 0; items.value.length; i++) {
+            if (items.value[i].producto.id === id) {
+                items.value.splice(i,1);
+                return
+            }
+        }
     }
 
     function updateTotal() {
@@ -24,5 +39,16 @@ export const carritoStore = defineStore('items', () => {
             total.value += entry.producto.precio * entry.cantidad;
         });
     }
-    return {items, total, carritoAdd, updateTotal}
+
+    async function updateCarrito() {
+        for (let i = 0; i < items.value.length; i++) {
+            let url = `${import.meta.env.VITE_API_URL}/productos/productoDetalle/${items.value[i].producto.id}`;
+            const response = await fetch(url);
+            if (response.ok) {
+                const data = await response.json();
+                items.value[i].producto = data;
+            }
+        }
+    }
+    return {items, total, carritoAdd, carritoRemove, carritoDelete, updateCarrito, updateTotal}
 })
