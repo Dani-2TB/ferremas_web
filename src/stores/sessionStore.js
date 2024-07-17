@@ -8,6 +8,7 @@ export const sessionStore = defineStore('session', () => {
     const token = ref('Anonymous');
     const isLoggedIn = ref(false);
     const rol = ref("Guest")
+    const currency = ref("CLP");
 
     async function login(user, password) {
         let url = apiUrl + 'login';
@@ -82,5 +83,5 @@ export const sessionStore = defineStore('session', () => {
         }
     }
 
-    return { username, token, isLoggedIn, rol, login, register, logout, checkCredentials}
+    return { username, token, isLoggedIn, rol, currency, login, register, logout, checkCredentials}
 });
