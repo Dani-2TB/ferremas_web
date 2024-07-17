@@ -27,10 +27,11 @@ function pagar() {
         <hr>
         <div class="d-flex flex-column">
           <p class="fs-4 me-3 align-self-end">
-            Total: {{ storeCarrito.total }}
+            Total: ${{ storeCarrito.total }}
           </p>
         </div>
-        <button @click="pagar" class="btn btn-success px-5">Pagar</button>
+        <button @click="pagar" class="btn btn-success px-5 mb-2">Pagar</button>
+        <p class="text-subtle">*Retiro en tienda con comprobante de pago</p>
       </div>
     </div>
   </div>
