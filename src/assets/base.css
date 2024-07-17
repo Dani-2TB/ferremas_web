@@ -1,3 +1,10 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   height: 100%;
 }
@@ -29,7 +36,7 @@ body {
 }
 
 .footer-mask{
-  background-color: rgb(0,0,0,0.8);
+  background-color: #ffedb4b3;
 }
 .carousel-img{
   height: 30rem;
