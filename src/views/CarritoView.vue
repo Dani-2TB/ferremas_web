@@ -3,8 +3,10 @@ import { carritoStore } from '@/stores/carritoStore';
 import CarritoItem from '../components/carrito/CarritoItem.vue'
 
 const storeCarrito = carritoStore()
+
 function pagar() {
   window.open(`${import.meta.env.VITE_API_URL}/tbk/crearTransaccion/${storeCarrito.total}`)
+  storeCarrito.clearCarrito();
 }
 
 </script>

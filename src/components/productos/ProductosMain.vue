@@ -68,8 +68,10 @@
   });
 
   onMounted(() => {
-    fetchProductos(`${import.meta.env.VITE_API_URL}/productos/productosList`);
+    fetchProductos(`${import.meta.env.VITE_API_URL}/productos/productoList`);
   });
+
+
   async function fetchProductos(url = "") {
     productosArray.value = []
     cargandoProductos.value = true;

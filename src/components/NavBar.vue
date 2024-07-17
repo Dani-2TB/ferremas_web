@@ -63,6 +63,7 @@ const cantidadItems = ref(0);
 
 onMounted(() => {
   cantidadItems.value = items.length;
+  console.log(cantidadItems)
 });
 
 watch (items, () =>{

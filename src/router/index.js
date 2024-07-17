@@ -107,6 +107,8 @@ router.beforeEach(async (to) => {
   if (to.name === 'login' && session.isLoggedIn) {
     return { name: 'home'}
   }
+  const carrito = carritoStore();
+  carrito.loadCarrito()
 });
 
 
