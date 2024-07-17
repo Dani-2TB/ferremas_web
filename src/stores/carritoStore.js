@@ -70,6 +70,7 @@ export const carritoStore = defineStore('items', () => {
             for (let i = 0; i<stored_items.length; i++) {
                 items.value.push(stored_items[i])
             }
+            this.updateCarrito()
             this.updateTotal()
         }
     }
