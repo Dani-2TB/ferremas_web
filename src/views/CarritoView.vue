@@ -7,6 +7,8 @@ const storeCarrito = carritoStore()
 function pagar() {
   window.open(`${import.meta.env.VITE_API_URL}/tbk/crearTransaccion/${storeCarrito.total}`)
   storeCarrito.clearCarrito();
+  storeCarrito.updateCarrito();
+  storeCarrito.updateTotal();
 }
 
 </script>
